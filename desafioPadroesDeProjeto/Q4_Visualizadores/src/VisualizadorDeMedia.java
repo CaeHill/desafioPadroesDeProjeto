@@ -1,21 +1,10 @@
 import java.util.List;
 
-public class VisualizadorDeMedia {
-    private List<Integer> valores;
+public class VisualizadorDeMedia implements Observer {
 
-    public VisualizadorDeMedia(List<Integer> valores){
-        this.valores = valores;
-    }
-
-    public void defineValores(List<Integer> valores){
-        this.valores = valores;
-    }
-
-    public void acrescentaValor(Integer valor){
-        this.valores.add(valor);
-    }
-
-    public void exibeMedia(){
+    @Override
+    public void update(FonteDeDados subject) {
+        List<Integer> valores = subject.getValores();
         double media = valores.stream()
             .mapToInt(Integer::intValue)
             .average()

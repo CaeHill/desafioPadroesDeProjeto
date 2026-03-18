@@ -1,24 +1,13 @@
 import java.util.List;
 
-public class VisualizadorDeSomatorio {
-    private List<Integer> valores;
+public class VisualizadorDeSomatorio implements Observer {
 
-    public VisualizadorDeSomatorio(List<Integer> valores){
-        this.valores = valores;
-    }
-
-    public void defineValores(List<Integer> valores){
-        this.valores = valores;
-    }
-
-    public void acrescentaValor(Integer valor){
-        this.valores.add(valor);
-    }
-
-    public void exibeSomatorio(){
+    @Override
+    public void update(FonteDeDados subject) {
+        List<Integer> valores = subject.getValores();
         Integer soma = valores.stream()
-            .mapToInt(Integer::intValue)
-            .sum();
-        System.out.println("Somatorio: "+soma+", quantidade de elementos analisados: "+valores.size());
+                .mapToInt(Integer::intValue)
+                .sum();
+        System.out.println("Somatorio: " + soma + ", quantidade de elementos analisados: " + valores.size());
     }
 }
